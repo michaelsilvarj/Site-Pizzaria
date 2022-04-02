@@ -4,7 +4,7 @@ const c = (el) => document.querySelector(el);
 const cs = (el) => document.querySelectorAll(el);
 
 
-//Mapeia a lista
+//Mapeia a lista pizza
 pizzaJson.map((item,index)=>{
     //Clona a model
     let pizzaItem = c('.models .pizza-item').cloneNode(true);
@@ -37,10 +37,9 @@ pizzaJson.map((item,index)=>{
                 size.querySelector('span').innerHTML = pizzaJson[key].sizes[SizeIndex];
 
             });
+            
+            c('.pizzaInfo--qt').innerHTML = modalQt;
 
-            c('pizzaInfo--qt').innerHTML = modalQt;
-/*
-*/
             c('.pizzaWindowArea').style.opacity=0;
             c('.pizzaWindowArea').style.display='flex';
             setTimeout(()=>{
@@ -55,3 +54,15 @@ pizzaJson.map((item,index)=>{
 
 
 });
+
+
+//Eventos Modal
+function closeModal(){
+    c('.pizzaWindowArea').style.opacity=0;
+    setTimeout(()=>{
+        c('.pizzaWindowArea').style.display = 'none';
+    },500);
+}
+cs('.pizzaInfo--cancelMobileButton,.pizzaInfo--cancelButton').forEach ((item)=>{
+    item.addEventListener('click',closeModal);
+}); 
