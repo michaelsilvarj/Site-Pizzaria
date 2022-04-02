@@ -1,4 +1,8 @@
 //Mapeia a lista
 pizzaJson.map((item,index)=>{
-    console.log(item);
+    //Clona a model
+    let pizzaItem = document.querySelector('.models .pizza-item').cloneNode(true);
+
+
+
 });
