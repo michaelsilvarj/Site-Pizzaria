@@ -1,3 +1,4 @@
+let modalQt = 1;
 //Encurtador função document .querySelector
 const c = (el) => document.querySelector(el);
 const cs = (el) => document.querySelectorAll(el);
@@ -20,11 +21,24 @@ pizzaJson.map((item,index)=>{
 
             //seta o item mais proximo de pizza-item
             let key = e.target.closest('.pizza-item').getAttribute('data-key');
+            modalQt=1;
 
             c('.pizzaBig img').src = pizzaJson[key].img;
             c('.pizzaInfo h1').innerHTML = pizzaJson[key].name;
             c('.pizzaInfo--desc').innerHTML = pizzaJson[key].description;
+            c('.pizzaInfo--actualPrice').innerHTML = `R$ ${pizzaJson[key].price.toFixed(2)}`;
+            c('.pizzaInfo--size.selected').classList.remove('selected');
+            
+            cs('.pizzaInfo--size').forEach((size,SizeIndex)=>{
+                if(SizeIndex == 2){
+                    size.classList.add('selected');
+                }
+                
+                size.querySelector('span').innerHTML = pizzaJson[key].sizes[SizeIndex];
 
+            });
+
+            c('pizzaInfo--qt').innerHTML = modalQt;
 /*
 */
             c('.pizzaWindowArea').style.opacity=0;
