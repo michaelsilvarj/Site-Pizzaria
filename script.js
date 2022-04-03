@@ -66,3 +66,28 @@ function closeModal(){
 cs('.pizzaInfo--cancelMobileButton,.pizzaInfo--cancelButton').forEach ((item)=>{
     item.addEventListener('click',closeModal);
 }); 
+
+//Função do modal que adiciona e retira quantidade de pizza
+c('.pizzaInfo--qtmais').addEventListener('click',()=>{
+    modalQt++;
+    c('.pizzaInfo--qt').innerHTML = modalQt;
+
+});
+c('.pizzaInfo--qtmenos').addEventListener('click',()=>{
+    if( modalQt>1){
+        modalQt--;
+        c('.pizzaInfo--qt').innerHTML = modalQt;
+    }
+});
+
+//Seleciona Tamanho pizza
+cs('.pizzaInfo--size').forEach((size,SizeIndex)=>{
+    size.addEventListener('click', (e)=>{
+        c('.pizzaInfo--size.selected').classList.remove('selected');
+        //seleciona o proprio item ao clicar
+        size.classList.add('selected');
+    });
+               
+
+});
+            
