@@ -151,7 +151,7 @@ function updateCart(){
 
            cartItem.querySelector('img').src = PizzaItem.img;
            cartItem.querySelector('.cart--item-nome').innerHTML = pizzaName;
-
+           cartItem.querySelector('.cart--item--qt').innerHTML = cart[i].qt;
 
 
            c('.cart').append(cart_item);
