@@ -149,12 +149,12 @@ function updateCart(){
 
            let pizzaName = `${pizzaItem.name} (${pizzaSizeName})`
 
-           cartItem.querySelector('img').src = PizzaItem.img;
+           cartItem.querySelector('img').src = pizzaItem.img;
            cartItem.querySelector('.cart--item-nome').innerHTML = pizzaName;
            cartItem.querySelector('.cart--item--qt').innerHTML = cart[i].qt;
 
 
-           c('.cart').append(cart_item);
+           c('.cart').append(cartItem);
 
         }
     }else{
