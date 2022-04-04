@@ -12,7 +12,8 @@ pizzaJson.map((item,index)=>{
     let pizzaItem = c('.models .pizza-item').cloneNode(true);
     pizzaItem.setAttribute('data-key',index);
     pizzaItem.querySelector('.pizza-item--img img').src= item.img;
-    pizzaItem.querySelector('.pizza-item--price').innerHTML = `R$ ${item.price.toFixed(2)}` ;
+    pizzaItem.querySelector('.pizza-item--price').innerHTML =`${item.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}`;
+    //pizzaItem.querySelector('.pizza-item--price').innerHTML = `R$ ${item.price.toFixed(2)}` ;
     pizzaItem.querySelector('.pizza-item--name').innerHTML = item.name ;
     pizzaItem.querySelector('.pizza-item--desc').innerHTML = item.description;
     pizzaItem.querySelector('a').addEventListener('click',(e)=>{
@@ -40,7 +41,7 @@ pizzaJson.map((item,index)=>{
             c('.pizzaInfo--qt').innerHTML = modalQt;
             c('.pizzaWindowArea').style.opacity=0;
             c('.pizzaWindowArea').style.display='flex';
-
+            
             setTimeout(()=>{
                 c('.pizzaWindowArea').style.opacity=1;
             },200);
@@ -50,6 +51,8 @@ pizzaJson.map((item,index)=>{
 
     // Adiciona elemento
     c('.pizza-area').append(pizzaItem);
+
+
 });
 
 
@@ -83,19 +86,32 @@ cs('.pizzaInfo--size').forEach((size,SizeIndex)=>{
         c('.pizzaInfo--size.selected').classList.remove('selected');
         //seleciona o proprio item ao clicar
         size.classList.add('selected');
+
+      
     });
 });
+
+
 
 //Reune as informações no carrinho
 c('.pizzaInfo--addButton').addEventListener('click',()=>{
 
     let size = parseInt(c('.pizzaInfo--size.selected').getAttribute('data-key'));
-    cart.push({
-        id:pizzaJson[modalKey].id,
-        size,
-        qt:modalQt,
 
-    });
+    //identifica o tamanho e o sabor são os mesmos
+    let identifier = pizzaJson[modalKey].id+'@'+size;
+    let key = cart.findIndex((item)=>item.identifier == identifier);
+    //controla quantidade comprada
+    if(key>-1){
+        cart[key].qt += modalQt;
+    }else{
+        cart.push({
+            identifier,
+            id:pizzaJson[modalKey].id,
+            size,
+            qt:modalQt,
+        });
+    }
     closeModal();
 })
             
