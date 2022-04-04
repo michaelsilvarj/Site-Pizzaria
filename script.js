@@ -122,10 +122,9 @@ function updateCart(){
         c('aside').classList.indexadd('show');
         for (let i in cart) {
            let pizzaItem = pizzaJson.find((item)=>{item.id == cart[i].id});
-            
         }
     }else{
         c('aside').classList.remove('show');
     }
 }
-            
+       
