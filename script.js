@@ -118,13 +118,15 @@ c('.pizzaInfo--addButton').addEventListener('click',()=>{
 
 // Atualiza carrinho
 function updateCart(){
-    if(cart.length>0){
-        c('aside').classList.indexadd('show');
+
+    if(cart.length > 0){
+        c('aside').classList.add('show');
         for (let i in cart) {
-           let pizzaItem = pizzaJson.find((item)=>{item.id == cart[i].id});
+           let pizzaItem = pizzaJson.find((item)=>item.id == cart[i].id);
+            
         }
     }else{
         c('aside').classList.remove('show');
     }
 }
-       
+            
